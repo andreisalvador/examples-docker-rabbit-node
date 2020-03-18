@@ -34,7 +34,7 @@ const direct = {
             durable: false,
         }
     }, queues: [{
-        name: 'direct-queue-one',
+        name: 'direct-queue-sms',
         routingKey: 'sms',
         options: {
             durable: true
@@ -43,7 +43,7 @@ const direct = {
             noAck: true
         }
     }, {
-        name: 'direct-queue-two',
+        name: 'direct-queue-email',
         routingKey: 'email',
         options: {
             durable: true
@@ -51,8 +51,90 @@ const direct = {
             noAck: true
         }
     }, {
-        name: 'direct-queue-three',
+        name: 'direct-queue-whatsapp',
         routingKey: 'whatsapp',
+        options: {
+            durable: true
+        }, consumeOptions: {
+            noAck: true
+        }
+    }]
+}
+
+const headers = {
+    exchange: {
+        name: 'headers-exchange',
+        type: 'headers',
+        options: {
+            durable: false,
+            headers: {
+                'format': 'xml',
+                'x-match': 'all'
+            }
+        }
+    }, queues: [{
+        name: 'headers-queue-json',
+        options: {
+            durable: true,
+            headers: {
+                'format': 'json'                
+            }
+        },
+        consumeOptions: {
+            noAck: true
+        }
+    }, {
+        name: 'headers-queue-txt',        
+        options: {
+            durable: true,
+            headers: {
+                'format': 'txt'                
+            }
+        }, consumeOptions: {
+            noAck: true
+        }
+    }, {
+        name: 'headers-queue-xml',        
+        options: {
+            durable: true,
+            headers: {
+                'format': 'xml'
+            }
+        }, consumeOptions: {
+            noAck: true
+        }
+    }]
+}
+
+
+const topic = {
+    exchange: {
+        name: 'topic-exchange',
+        type: 'topic',
+        routingKey: 'cellphone.year.apple',
+        options: {
+            durable: false,
+        }
+    }, queues: [{
+        name: 'topic-queue-year',
+        routingKey: '*.year.*',
+        options: {
+            durable: true
+        },
+        consumeOptions: {
+            noAck: true
+        }
+    }, {
+        name: 'topic-queue-car',
+        routingKey: '*.car',
+        options: {
+            durable: true
+        }, consumeOptions: {
+            noAck: true
+        }
+    }, {
+        name: 'topic-queue-color',
+        routingKey: 'color.model.#',
         options: {
             durable: true
         }, consumeOptions: {
@@ -63,5 +145,7 @@ const direct = {
 
 module.exports = Object.freeze({
     FANOUT: fanout,
-    DIRECT: direct
+    DIRECT: direct,
+    HEADERS: headers,
+    TOPIC: topic
 })

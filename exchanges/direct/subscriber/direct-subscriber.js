@@ -1,4 +1,4 @@
 const subscriber = require('./../../../connections/subcriber/SubscriberBase.js')
-const fanoutConfigurations = require('../../../shared/rabbit-constants.js')
+const directConfigurations = require('../../../shared/rabbit-constants.js')
 
-subscriber(fanoutConfigurations.DIRECT.queues)
+subscriber(directConfigurations.DIRECT.queues)
