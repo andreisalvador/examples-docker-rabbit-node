@@ -1,0 +1,1 @@
+# examples-docker-rabbit-node
