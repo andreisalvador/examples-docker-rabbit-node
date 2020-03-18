@@ -1,5 +1,4 @@
 const publisher = require('./../../../connections/publisher/PublisherBase.js')
-const fanoutConstants = require('../shared/fanout-shared.js')
+const fanoutConfigurations = require('../shared/fanout-shared.js')
 
-console.log(fanoutConstants)
-publisher('FANOUT MESSAGE', fanoutConstants.queues, fanoutConstants.exchange)
+publisher('FANOUT MESSAGE', fanoutConfigurations.FANOUT.QUEUES, fanoutConfigurations.FANOUT.EXCHANGE)
