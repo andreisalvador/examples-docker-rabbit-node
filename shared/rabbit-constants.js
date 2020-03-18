@@ -1,6 +1,5 @@
 const fanout = {
     exchange: {
-
         name: 'fanout-exchange',
         type: 'fanout',
         options: {
@@ -24,6 +23,45 @@ const fanout = {
     }]
 }
 
+
+
+const direct = {
+    exchange: {
+        name: 'direct-exchange',
+        type: 'direct',
+        routingKey: 'whatsapp',
+        options: {
+            durable: false,
+        }
+    }, queues: [{
+        name: 'direct-queue-one',
+        routingKey: 'sms',
+        options: {
+            durable: true
+        },
+        consumeOptions: {
+            noAck: true
+        }
+    }, {
+        name: 'direct-queue-two',
+        routingKey: 'email',
+        options: {
+            durable: true
+        }, consumeOptions: {
+            noAck: true
+        }
+    }, {
+        name: 'direct-queue-three',
+        routingKey: 'whatsapp',
+        options: {
+            durable: true
+        }, consumeOptions: {
+            noAck: true
+        }
+    }]
+}
+
 module.exports = Object.freeze({
-    FANOUT: fanout
+    FANOUT: fanout,
+    DIRECT: direct
 })

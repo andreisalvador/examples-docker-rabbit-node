@@ -1,7 +1,7 @@
 const rabbitProcessor = require('./../RabbitConnector.js')
 
 const publisherBase = (message, queues = [], exchange = {}) => {
-    let sentWithSucessfull = rabbitProcessor((channel) => {
+    rabbitProcessor((channel) => {
         if (exchange) {
             channel.assertExchange(exchange.name, exchange.type, exchange.options)
 
@@ -11,14 +11,14 @@ const publisherBase = (message, queues = [], exchange = {}) => {
             })
 
             resultLog(channel.publish(exchange.name, exchange.routingKey, Buffer.from(message)))
-                
+
         } else {
             queues.forEach(queue => {
                 channel.assertQueue(queue.name, queue.options)
-                resultLog(channel.sendToQueue(queue.name, Buffer.from(message)))                    
+                resultLog(channel.sendToQueue(queue.name, Buffer.from(message)))
             })
         }
-    })   
+    })
 }
 
 const resultLog = (success) => {
