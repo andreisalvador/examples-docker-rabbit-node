@@ -1,4 +1,4 @@
 const publisher = require('./../../../connections/publisher/PublisherBase.js')
-const fanoutConfigurations = require('../shared/fanout-shared.js')
+const fanoutConfigurations = require('../../../shared/rabbit-constants.js')
 
-publisher('FANOUT MESSAGE', fanoutConfigurations.FANOUT.QUEUES, fanoutConfigurations.FANOUT.EXCHANGE)
+publisher('FANOUT MESSAGE', fanoutConfigurations.FANOUT.queues, fanoutConfigurations.FANOUT.exchange)

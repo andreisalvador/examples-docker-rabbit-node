@@ -12,7 +12,7 @@ const subscriberBase = (queues = []) => {
             })
         } else
             console.error("Please inform queues to subscriber.")
-    }, false)
+    }, true)
 }
 
 module.exports = subscriberBase
